@@ -1,8 +1,9 @@
 import React from "react";
-import "../App.css";
+import "./App.css";
 import { Products } from "../Products";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { Menu } from "../Menu";
+import { ProductPost } from "../Products/ProductPost";
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -40,6 +41,7 @@ function App() {
               />
             }
           />
+          <Route path="/products/:slug" element={<ProductPost />} />
         </Routes>
       </HashRouter>
     </>

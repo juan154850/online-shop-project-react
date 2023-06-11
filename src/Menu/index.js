@@ -21,7 +21,7 @@ const Menu = () => {
     <nav>
       <ul>
         {routes.map((element) => (
-          <li>
+          <li key={element.to}>
             <NavLink
               to={element.to}
               style={({ isActive }) => ({
