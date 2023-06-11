@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import { Products } from "../Products";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { Menu } from "./Menu";
+import { Menu } from "../Menu";
 
 function App() {
   const [products, setProducts] = React.useState([]);
