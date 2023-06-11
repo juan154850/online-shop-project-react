@@ -1,6 +1,6 @@
 import React from "react";
 
-const AppUI = ({ products, loadingProducts, errorProducts }) => {
+const Products = ({ products, loadingProducts, errorProducts }) => {
   return (
     <div className="container">
       {loadingProducts ? <p>Loading Products...</p> : null}
@@ -27,4 +27,4 @@ const AppUI = ({ products, loadingProducts, errorProducts }) => {
   );
 };
 
-export { AppUI };
+export { Products };
