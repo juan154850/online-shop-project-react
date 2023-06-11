@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ProductPost = () => {
+
+  const navigate = useNavigate()
   const { slug } = useParams();
   //llamamos la API con ese ID específico para traer el contenido del producto.
   const [product, setProduct] = React.useState([]);
@@ -25,8 +27,14 @@ const ProductPost = () => {
     };
     getProductByID();
   }, [slug]);
+
+  const returnToProducts = () => {
+    navigate('/products');
+  }
+
+
   return (
-		<div className="ProductPost-container">
+    <div className="ProductPost-container">
       {onLoading ? <p>Loading the product...</p> : null}
       {onError ? <p>An error has occurred.</p> : null}
       {product.map((item) => (
@@ -41,6 +49,7 @@ const ProductPost = () => {
           <br></br>
           <span>Amount: {item.amount}</span>
           <br></br>
+          <button onClick={returnToProducts} >See all products</button>
         </div>
       ))}
     </div>
