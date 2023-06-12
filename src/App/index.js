@@ -9,6 +9,7 @@ import { LoginPage } from "../LoginPage";
 import { LogoutPage } from "../LogoutPage";
 import { ProfilePage } from "../ProfilePage";
 import {AuthProvider } from "../Auth"
+import { ProtectedRoute } from "../Auth/ProtectedRoute";
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -42,8 +43,22 @@ function App() {
             <Route path="/products/:slug" element={<ProductPost />} />
 
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
-            <Route path="/users/me" element={<ProfilePage />} />
+            <Route
+              path="/logout"
+              element={
+                <ProtectedRoute>
+                  <LogoutPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users/me"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </AuthProvider>
       </HashRouter>

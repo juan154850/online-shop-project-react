@@ -4,12 +4,7 @@ import { useAuth } from "../Auth";
 
 const ProfilePage = () => {
   const auth = useAuth();
-
-  console.log(auth.user);
-  
   const userEntries = Object.entries(auth.user);
-
-
   return (
     <>
       <h2>Your Profile</h2>
