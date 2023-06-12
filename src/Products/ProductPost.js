@@ -41,7 +41,9 @@ const ProductPost = () => {
         <div key={slug}>
           <h2>Name: {item.name}</h2>
           <br></br>
-          <img src={item.image} alt={`product: ${item.name}`}></img>
+          <img
+            src={item.image}
+            alt={`product: ${item.name}`}></img>
           <br></br>
           <span>Price: ${item.price}</span>
           <br></br>
@@ -49,7 +51,7 @@ const ProductPost = () => {
           <br></br>
           <span>Amount: {item.amount}</span>
           <br></br>
-          <button onClick={returnToProducts} >See all products</button>
+          <button onClick={returnToProducts}>See all products</button>
         </div>
       ))}
     </div>

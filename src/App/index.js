@@ -41,7 +41,10 @@ function App() {
               />
             }
           />
-          <Route path="/products/:slug" element={<ProductPost />} />
+          <Route
+            path="/products/:slug"
+            element={<ProductPost />}
+          />
         </Routes>
       </HashRouter>
     </>

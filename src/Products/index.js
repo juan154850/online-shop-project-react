@@ -1,6 +1,7 @@
 import React from "react";
 import "./Products.css"
 import { ProductLink } from "./ProductLink";
+// import { Outlet } from "react-router-dom"; //se usa para no perder el contenido de una ruta principal.
 
 const Products = ({ products, loadingProducts, errorProducts }) => {
   return (
