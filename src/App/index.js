@@ -8,6 +8,7 @@ import { HomePage } from "../HomePage";
 import { LoginPage } from "../LoginPage";
 import { LogoutPage } from "../LogoutPage";
 import { ProfilePage } from "../ProfilePage";
+import {AuthProvider } from "../Auth"
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -33,15 +34,18 @@ function App() {
   return (
     <>
       <HashRouter>
-        <Menu />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<Products products={products} loadingProducts={loadingProducts} errorProducts={errorProducts} />} />
-          <Route path="/products/:slug" element={<ProductPost />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/logout" element={<LogoutPage />} />
-          <Route path="/users/me" element={<ProfilePage />} />
-        </Routes>
+        <AuthProvider>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<Products products={products} loadingProducts={loadingProducts} errorProducts={errorProducts} />} />
+            <Route path="/products/:slug" element={<ProductPost />} />
+
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
+            <Route path="/users/me" element={<ProfilePage />} />
+          </Routes>
+        </AuthProvider>
       </HashRouter>
     </>
   );
