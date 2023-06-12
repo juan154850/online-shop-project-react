@@ -84,7 +84,7 @@ const AuthProvider = ({ children }) => {
     navigate(`/`);
   };
 
-  const auth = { user, login, logout, isLoading, onError };
+  const auth = { user, login, logout, isLoading, onError, authCookie };
 
   // console.log(auth.user);
 
