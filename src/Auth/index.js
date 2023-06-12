@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
    */
   const login = async ({ username, password }) => {
     const getUser = async () => {
+      setOnError(false);
       setIsLoading(true);
       try {
         const resp = await fetch(`http://localhost:8000/auth`, {
