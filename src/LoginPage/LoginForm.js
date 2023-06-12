@@ -8,9 +8,7 @@ const LoginForm = () => {
   const auth = useAuth(); //contiene el estado del usuario y los métodos de login y logout
 
   const login = async (e) => {
-    e.preventDefault();
-    console.log(username);
-    console.log(password);
+    e.preventDefault();    
     await auth.login({ username, password });
   };
 

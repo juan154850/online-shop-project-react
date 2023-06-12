@@ -40,19 +40,27 @@ const ProductPost = () => {
   };
 
   // this function remove an object in the data base.
-  const deleteProduct = async () => {        
+  const deleteProduct = async () => {
     const deleteProductDB = async () => {
-      const resp = await fetch(`http://localhost:8000/products/${slug}`, {
-        headers: {
-          accept: "application/json",
-          "accept-language": "es-ES,es;q=0.9",
-          authorization: `Bearer ${auth.authCookie.authCookie.access_token}`,
-        },
-        body: null,
-        method: "DELETE",
-      });
-      if (resp.ok) {
-        navigate(`/products`);
+      setOnLoading(true);
+      try {
+        const resp = await fetch(`http://localhost:8000/products/${slug}`, {
+          headers: {
+            accept: "application/json",
+            "accept-language": "es-ES,es;q=0.9",
+            authorization: `Bearer ${auth.authCookie.authCookie.access_token}`,
+          },
+          body: null,
+          method: "DELETE",
+        });
+        if (resp.ok) {
+          navigate(`/products`);
+          setOnLoading(false);
+        }
+      } catch (error) {
+        setOnLoading(false);
+        setOnError(true);
+        throw error;
       }
     };
 
@@ -63,27 +71,29 @@ const ProductPost = () => {
     <div className="ProductPost-container">
       {onLoading ? <AppLoading /> : null}
       {onError ? <AppError message={`An error has occurred.`} /> : null}
-      {product.map((item) => (
-        <div key={slug}>
-          <h2>Name: {item.name}</h2>
-          <br></br>
-          <img src={item.image} alt={`product: ${item.name}`}></img>
-          <br></br>
-          <span>Price: {item.price}</span>
-          <br></br>
-          <span>location: {item.location}</span>
-          <br></br>
-          <span>Amount: {item.amount}</span>
-          <br></br>
-          <button onClick={returnToProducts}>See all products</button>
-          {auth.user?.role === "admin" && (
-            <>
-              <button onClick={editProduct}>Edit product</button>
-              <button onClick={deleteProduct}>Delete product</button>
-            </>
-          )}
-        </div>
-      ))}
+      {!onLoading &&
+        !onError &&
+        product.map((item) => (
+          <div key={slug}>
+            <h2>Name: {item.name}</h2>
+            <br></br>
+            <img src={item.image} alt={`product: ${item.name}`}></img>
+            <br></br>
+            <span>Price: {item.price}</span>
+            <br></br>
+            <span>location: {item.location}</span>
+            <br></br>
+            <span>Amount: {item.amount}</span>
+            <br></br>
+            <button onClick={returnToProducts}>See all products</button>
+            {auth.user?.role === "admin" && (
+              <>
+                <button onClick={editProduct}>Edit product</button>
+                <button onClick={deleteProduct}>Delete product</button>
+              </>
+            )}
+          </div>
+        ))}
     </div>
   );
 };

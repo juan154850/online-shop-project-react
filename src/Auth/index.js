@@ -36,7 +36,6 @@ const AuthProvider = ({ children }) => {
 
           //if the log in was successful, we now fetch the particular user's data and redirect it to his profile path.
           setAuthCookie("authCookie", data, { path: "/" });
-          console.log(authCookie.authCookie.access_token);
           const respUser = await fetch("http://localhost:8000/users/me", {
             headers: {
               accept: "application/json",
@@ -85,8 +84,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const auth = { user, login, logout, isLoading, onError, authCookie };
-
-  // console.log(auth.user);
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
