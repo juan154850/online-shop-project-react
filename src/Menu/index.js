@@ -12,10 +12,17 @@ routes.push({
   text: "Products",
 });
 routes.push({
-  to: "/auth",
+  to: "/login",
   text: "Login",
 });
-
+routes.push({
+  to: "/logout",
+  text: "Logout",
+});
+routes.push({
+  to: "/users/me",
+  text: "My account",
+});
 const Menu = () => {
   return (
     <nav>

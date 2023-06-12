@@ -4,6 +4,10 @@ import { Products } from "../Products";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { Menu } from "../Menu";
 import { ProductPost } from "../Products/ProductPost";
+import { HomePage } from "../HomePage";
+import { LoginPage } from "../LoginPage";
+import { LogoutPage } from "../LogoutPage";
+import { ProfilePage } from "../ProfilePage";
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -31,20 +35,12 @@ function App() {
       <HashRouter>
         <Menu />
         <Routes>
-          <Route
-            path="/products"
-            element={
-              <Products
-                products={products}
-                loadingProducts={loadingProducts}
-                errorProducts={errorProducts}
-              />
-            }
-          />
-          <Route
-            path="/products/:slug"
-            element={<ProductPost />}
-          />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<Products products={products} loadingProducts={loadingProducts} errorProducts={errorProducts} />} />
+          <Route path="/products/:slug" element={<ProductPost />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
+          <Route path="/users/me" element={<ProfilePage />} />
         </Routes>
       </HashRouter>
     </>
